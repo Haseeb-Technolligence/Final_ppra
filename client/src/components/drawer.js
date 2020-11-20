@@ -147,14 +147,14 @@ function MiniDrawer(props, { isLoggedIn, loggedInUser }) {
           </IconButton>
         </div>
         <Box alignItems="center" display="flex" flexDirection="column" p={2}>
-          {/* <Avatar
+          <Avatar
             className={classes.dplarge}
-            // src={
-            //   "data:image/png;base64," +
-            //   new Buffer(props.loggedInUser.photo.data).toString("base64")
-            // }
+            src={
+              "data:image/png;base64," +
+              new Buffer(props.loggedInUser.photo.data).toString("base64")
+            }
             to="/app/account"
-          /> */}
+          />
           <Typography className={classes.name} color="textPrimary" variant="h5">
             {props.loggedInUser.name}
           </Typography>
