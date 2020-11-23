@@ -62,7 +62,7 @@ const Login = (props) => {
                   variant="outlined"
                 />
                 <Grid container item xs={12} justify="flex-end">
-                  <a href="#">Forget Password?</a>
+                  <a onClick={()=>alert('Contact HR for password')}>Forget Password?</a>
                 </Grid>
                 <Grid container item xs={12} justify="center">
                   <Button

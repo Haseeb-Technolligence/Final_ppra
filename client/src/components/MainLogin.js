@@ -103,7 +103,7 @@ const BasicTextFields = ({ loginUser, isLoggedIn, loggedInUser, state }) => {
                 variant="outlined"
               />
               <Grid container item xs={10} sm={10} md={12} justify="flex-end">
-                <a href="#">Forget Password?</a>
+                <a href="#" onClick={()=>alert('Contact HR for password')}>Forget Password?</a>
               </Grid>
               <Grid container item xs={10} sm={10} md={12} justify="center">
                 <Button

@@ -8,6 +8,7 @@ import {
   AttendanceReducer,
   DailyReducer,
   PayRollReducer,
+
 } from "./drawerAllReducers";
 import { employeesReducer } from "./employee-reducer";
 import { demoReducer } from "./empdata";
@@ -18,6 +19,7 @@ import { NoticeReducer } from "./noticeReducer";
 import { combineReducers } from "redux";
 import authReducer from "./authReducer";
 import { dptReducer } from "./dptReducer";
+import { attendance } from "./attendance";
 
 export const allReducers = combineReducers({
   DrawerReducer,
@@ -25,6 +27,7 @@ export const allReducers = combineReducers({
   leaveTypeReducer,
   leaveReducer,
   visitorReducer,
+  attendance,
   xyz: demoReducer,
   EmployeeReducer,
   LeaveReducer,

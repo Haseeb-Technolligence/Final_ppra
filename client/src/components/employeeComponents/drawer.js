@@ -16,6 +16,7 @@ import Appbar from "../appbar";
 import ManageLeave from "../manageLeave";
 import { useDispatch, useSelector, connect } from "react-redux";
 import EmployeeForm from "../employeeForm";
+import Attendance from "../attendance";
 import {
   LeaveActionClose,
   EmployeeActionClose,
@@ -147,8 +148,8 @@ function EmployeeMiniDrawer(props) {
           <Avatar
             className={classes.dplarge}
             src={
-              "data:image/png;base64," +
-              new Buffer(props.loggedInUser.photo.data).toString("base64")
+              props.loggedInUser.photo? "data:image/png;base64," +
+              new Buffer(props.loggedInUser.photo.data).toString("base64"):""
             }
             to="/app/account"
           />
@@ -186,6 +187,7 @@ function EmployeeMiniDrawer(props) {
             path="/employeehome/ManageLeave"
             component={ManageLeave}
           />
+          <Route exact path="/employeehome/EmployeeAttendance" component={Attendance} />
         </Switch>
       </main>
     </div>

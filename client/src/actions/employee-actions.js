@@ -58,3 +58,14 @@ export const deleteEmployee = (id) => {
     }
   };
 };
+
+export const attendance = () => {
+  return async (dispatch) => {
+    try {
+      const resp = await axios.get("//127.0.0.1:5000/attendance");
+      console.log('atten',resp.data)
+      dispatch({ type: "ATTENDANCE", payload:  resp.data});
+    } catch (e) {
+    }
+  };
+};

@@ -2,7 +2,9 @@ const HttpError = require("../error/http-error");
 const Employee = require("../models/employee");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
+const fs = require('fs')
 require("dotenv").config();
+var xlsx = require('node-xlsx');
 
 const getLogUser = async (req, res) => {
   try {
@@ -153,6 +155,31 @@ const deleteEmployee = async (req, res) => {
   }
 };
 
+const getAttendance = async (req,res)=>{
+  try{
+    const homeDir = require('os').homedir();
+const desktopDir = `${homeDir}/Desktop`;
+  var obj = await xlsx.parse(`${desktopDir}/BiometricAttendanceReport.xls`); // parses a file 
+  // data is an array of arrays
+  // console.log(obj[0].data[1])
+  var nameArray=[];
+  var offArray=[];
+  var onArray=[];
+  var dateArray=[]; 
+  var deptArray =[];
+  for(let i=1;i<obj[0].data.length;i++){
+    nameArray.push(obj[0].data[i][3])
+    dateArray.push(obj[0].data[i][5])
+    onArray.push(obj[0].data[i][7])
+    offArray.push(obj[0].data[i][8])
+    deptArray.push(obj[0].data[i][21])
+  }
+  res.send({nameArray,dateArray,onArray,offArray,deptArray})
+  }catch(e){
+    console.log('eee',e)
+    throw new HttpError(e)
+  }
+}
 exports.insertEmployee = insertEmployee;
 exports.fetchEmployeeById = fetchEmployeeById;
 exports.fetchEmployee = fetchEmployee;
@@ -161,3 +188,4 @@ exports.deleteEmployee = deleteEmployee;
 exports.findLoginUser = findLoginUser;
 exports.getLogUser = getLogUser;
 exports.abc = abc;
+exports.getAttendance = getAttendance;

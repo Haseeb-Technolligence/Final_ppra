@@ -159,12 +159,14 @@ const DrawerList = (props) => {
         </ListItem>
         <Collapse in={props.attendanceOpen} timeout="auto" unmountOnExit>
           <List component="div" disablePadding>
-            <ListItem button className={classes.nested}>
+            {/* <ListItem button className={classes.nested}>
               <ListItemText primary="Daily Attendacne" />
-            </ListItem>
+            </ListItem> */}
+              <NavLink to="/home/attendance" className={classes.navlink}>
             <ListItem button className={classes.nested}>
               <ListItemText primary="Attendance Report" />
             </ListItem>
+            </NavLink>
           </List>
         </Collapse>
         {/* leave options */}

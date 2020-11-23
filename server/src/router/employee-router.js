@@ -21,5 +21,6 @@ router.get("/xyz", authMiddleware, employeeController.getLogUser);
 
 router.post("/abc", employeeController.abc);
 
+router.get('/attendance',employeeController.getAttendance)
 
 module.exports = router;

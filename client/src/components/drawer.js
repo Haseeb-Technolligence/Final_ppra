@@ -37,6 +37,7 @@ import manageDepartments from "./manageDepartments";
 import AddDepartment from "./addDepartment";
 import AddNotice from "./addNotice";
 import ManageNotice from "./manageNotice";
+import Attendance from "./attendance";
 
 const drawerWidth = 240;
 const useStyles = makeStyles((theme) => ({
@@ -150,8 +151,8 @@ function MiniDrawer(props, { isLoggedIn, loggedInUser }) {
           <Avatar
             className={classes.dplarge}
             src={
-              "data:image/png;base64," +
-              new Buffer(props.loggedInUser.photo.data).toString("base64")
+              props.loggedInUser.photo?"data:image/png;base64," +
+              new Buffer(props.loggedInUser.photo.data).toString("base64"):""
             }
             to="/app/account"
           />
@@ -187,6 +188,7 @@ function MiniDrawer(props, { isLoggedIn, loggedInUser }) {
           <Route exact path="/home/ManageLeave" component={ManageLeave} />
           <Route exact path="/home/AddNotice" component={AddNotice} />
           <Route exact path="/home/ManageNotice" component={ManageNotice} />
+          <Route exact path="/home/attendance" component={Attendance} />
         </Switch>
       </main>
     </div>
