@@ -13,6 +13,8 @@ import LocalAtmIcon from "@material-ui/icons/LocalAtm";
 import ListItemSecondaryAction from "@material-ui/core/ListItemSecondaryAction";
 import AirplanemodeActiveIcon from "@material-ui/icons/AirplanemodeActive";
 import SettingsIcon from "@material-ui/icons/Settings";
+
+import TransferWithinAStationIcon from "@material-ui/icons/TransferWithinAStation";
 import ExitToAppIcon from "@material-ui/icons/ExitToApp";
 import ApartmentIcon from "@material-ui/icons/Apartment";
 import Collapse from "@material-ui/core/Collapse";
@@ -256,6 +258,27 @@ const DrawerList = (props) => {
             <ListItemText primary="Manage Holiday" />
           </ListItem>
         </DrawerListItem> */}
+         {/* visitors options */}
+         <DrawerListItem
+        onClick={() => {
+          props.payRollAction();
+          props.drawerActionOpen();
+        }}
+        primary="Visitors"
+        openVariable={props.payRollOpen}
+      >
+        <TransferWithinAStationIcon color="primary" />
+        <NavLink to="/home/AddVisitor" className={classes.navlink}>
+          <ListItem button className={classes.nested}>
+            <ListItemText primary="Add Visitor" />
+          </ListItem>
+        </NavLink>
+        <NavLink to="/home/CheckVisitor" className={classes.navlink}>
+          <ListItem button className={classes.nested}>
+            <ListItemText primary="Check Visitors" />
+          </ListItem>
+        </NavLink>
+      </DrawerListItem>
         {/* setting options */}
         <DrawerListItem
           onClick={() => {

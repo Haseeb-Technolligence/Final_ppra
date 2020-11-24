@@ -21,6 +21,9 @@ const Leave = mongoose.model("Leave", {
   authority: {
     type: String,
   },
+  department:{
+    type:String,
+  }
 });
 
 module.exports = Leave;

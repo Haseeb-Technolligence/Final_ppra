@@ -10,6 +10,7 @@ import {
 import { fetchEmployees } from "../actions/employee-actions";
 const ManageLeave = (props) => {
   const designation = props.loggedInUser.designation;
+  const department = props.loggedInUser.department;
   useEffect(() => {
     props.fetchLeave();
     props.fetchEmployees();
@@ -17,7 +18,7 @@ const ManageLeave = (props) => {
 
   let data = props.leaveState.map((leave) => {
     if (
-      (leave.status === "Pending" && designation === leave.authority) ||
+      (leave.status === "Pending" && designation === leave.authority && department === leave.department) ||
       designation === "HR"
     ) {
       const employee = props.employeeState.find((emp) => {
@@ -30,6 +31,7 @@ const ManageLeave = (props) => {
         duration: ConvertDate(leave.from) + " To " + ConvertDate(leave.to),
         comment: leave.comment,
         status: leave.status,
+        department:leave.department
       };
     }
   });
@@ -40,6 +42,7 @@ const ManageLeave = (props) => {
   const columns = [
     { title: "Employee Name", field: "employeeName" },
     { title: "Leave Type", field: "type" },
+    {title:"Department", field:"department"},
     { title: "Duration", field: "duration" },
     { title: "Comment", field: "comment" },
     { title: "Status", field: "status" },

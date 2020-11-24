@@ -34,6 +34,7 @@ const AddLeave = (props) => {
     (state) => state.leaveTypeReducer.leaveTypeList
   );
   const loggedInUser = useSelector((state) => state.authReducer.loggedInUser);
+  const department = loggedInUser.department;
   const leaveTypeOptions = leaveTypeList.map((leave) => {
     return (
       <option key={leave.type} value={leave.type}>
@@ -51,6 +52,7 @@ const AddLeave = (props) => {
       authority: e.target.authority.value,
       comment: e.target.comment.value,
       employeeId: loggedInUser._id,
+      department: department,
       status: "Pending",
     };
     e.target.leavetype.value = "";

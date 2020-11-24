@@ -16,6 +16,8 @@ import Appbar from "./appbar";
 import ManageLeave from "./manageLeave";
 import { useDispatch, useSelector, connect } from "react-redux";
 import EmployeeForm from "./employeeForm";
+import AddVisitor from "./employeeComponents/addVisitor";
+import CheckVisitor from "./employeeComponents/checkVisitor";
 import {
   LeaveActionClose,
   EmployeeActionClose,
@@ -189,6 +191,12 @@ function MiniDrawer(props, { isLoggedIn, loggedInUser }) {
           <Route exact path="/home/AddNotice" component={AddNotice} />
           <Route exact path="/home/ManageNotice" component={ManageNotice} />
           <Route exact path="/home/attendance" component={Attendance} />
+          <Route exact path="/home/AddVisitor" component={AddVisitor} />
+          <Route
+            exact
+            path="/home/CheckVisitor"
+            component={CheckVisitor}
+          />
         </Switch>
       </main>
     </div>
