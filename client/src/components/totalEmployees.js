@@ -27,7 +27,7 @@ const useStyles = makeStyles(() => ({
 
 const TotalEmp = (props,{ className, ...rest}) => {
   const classes = useStyles();
-console.log(props);
+// console.log(props);
   return (
     <Card
       className={clsx(classes.root, className)}
@@ -51,7 +51,7 @@ console.log(props);
               color="textPrimary"
               variant="h4"
             >
-              {props.users}
+              {props.emp}
             </Typography>
           </Grid>
           <Grid item>

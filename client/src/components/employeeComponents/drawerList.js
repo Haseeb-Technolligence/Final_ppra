@@ -148,7 +148,7 @@ const DrawerList = (props) => {
         </NavLink>
 
         {/* attendance options */}
-        <NavLink
+        {/* <NavLink
           to="/employeehome/EmployeeAttendance"
           className={classes.navlink}
         >
@@ -158,7 +158,7 @@ const DrawerList = (props) => {
             </ListItemIcon>
             <ListItemText primary="Attendance" />
           </ListItem>
-        </NavLink>
+        </NavLink> */}
 
         {/* leave options */}
 

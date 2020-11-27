@@ -65,7 +65,7 @@ function EmployeeForm(props) {
       employee.append("fatherName", e.target.fatherName.value);
       employee.append("email", e.target.email.value);
       if(e.target.password.value.length > 0 )employee.append("password", e.target.password.value);
-      employee.append("dob", e.target.dob.value);
+      if(e.target.dob.value) employee.append("dob", e.target.dob.value);
       employee.append("gender", e.target.gender.value);
       employee.append("maritialStatus", e.target.maritalStatus.value);
       employee.append("phoneNumber", e.target.phone.value);
@@ -74,7 +74,7 @@ function EmployeeForm(props) {
       employee.append("department", e.target.department.value);
       employee.append("designation", e.target.designation.value);
       employee.append("status", e.target.status.value);
-      employee.append("joiningDate", e.target.doj.value);
+      if(e.target.doj.value) employee.append("joiningDate", e.target.doj.value);
       employee.append("leavingDate", "");
       employee.append("resume", "empty");
       employee.append("offerLetter", "empty");
@@ -215,7 +215,7 @@ function EmployeeForm(props) {
                 fullWidth={true}
                 variant="outlined"
               />
-              <FormLabel component="legend">Date of birth *</FormLabel>
+              <FormLabel component="legend">{initialValues ? "Current DOB: " + initialValues.dob : "Date of birth *"}</FormLabel>
               <Grid item container style={{ marginTop: "20px" }}>
                 <Grid item xs={6}>
                   <FormLabel component="legend">Gender</FormLabel>
@@ -388,7 +388,7 @@ function EmployeeForm(props) {
                   fullWidth={true}
                   variant="outlined"
                 />
-                <FormLabel component="legend">Date of joining *</FormLabel>
+                <FormLabel component="legend">{initialValues ? "Current DOJ: " + initialValues.doj : "Date of joining *"}</FormLabel>
                 <TextField
                   name="dol"
                   type="date"

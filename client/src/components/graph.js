@@ -20,24 +20,26 @@ const useStyles = makeStyles(() => ({
   root: {}
 }));
 
-const Graph = ({ className, ...rest }) => {
+const Graph = ({dates, present, total,absent, className, attendanceData, ...rest }) => {
+ 
   const classes = useStyles();
   const theme = useTheme();
 
+  console.log('preee',dates)
   const data = {
     datasets: [
       {
         backgroundColor: colors.indigo[500],
-        data: [18, 5, 19, 27, 29, 19, 20],
-        label: 'This year'
+        data: [present[0],present[1],present[2],present[3],present[4],present[5],present[6]],
+        label: 'Present'
       },
       {
         backgroundColor: colors.grey[200],
-        data: [11, 20, 12, 29, 30, 25, 13],
-        label: 'Last year'
+        data: [absent[1],absent[2],absent[3],absent[4],absent[5],absent[6]],
+        label: 'Absent'
       }
     ],
-    labels: ['1 Aug', '2 Aug', '3 Aug', '4 Aug', '5 Aug', '6 Aug']
+    labels: dates
   };
 
   const options = {
@@ -110,7 +112,7 @@ const Graph = ({ className, ...rest }) => {
             Last 7 days
           </Button>
         )}
-        title="2020 Employees Present Graph"
+        title="Employees Attendance Graph"
       />
       <Divider />
       <CardContent>
@@ -146,5 +148,4 @@ const Graph = ({ className, ...rest }) => {
 Graph.propTypes = {
   className: PropTypes.string
 };
-
 export default Graph;
