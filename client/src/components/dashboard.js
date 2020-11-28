@@ -39,8 +39,6 @@ if(mm<10)
     mm='0'+mm;
 } 
 today = mm+'/'+dd+'/'+yyyy;
-mm = 9;
-dd = 3;
 var d = new Date(today);
 var weekday = new Array(7);
 weekday[0] = "Sunday";
