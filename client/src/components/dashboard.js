@@ -38,6 +38,8 @@ if(mm<10)
 {
     mm='0'+mm;
 } 
+dd = 3;
+mm = 9;
 today = mm+'/'+dd+'/'+yyyy;
 var d = new Date(today);
 var weekday = new Array(7);
@@ -211,17 +213,17 @@ var totalforg = [gtotal0.length,gtotal1.length,gtotal2.length,gtotal3.length,gto
       <Grid container spacing={3}>
         <Grid item xs>
           <Paper className={classes.paper}>
-            <TotalEmp title="TOTAL EMPLOYEES" emp= {total?total.length:""}/>
+            <TotalEmp title="TOTAL EMPLOYEES" emp= {total?present.length:""}/>
           </Paper>
         </Grid>
         <Grid item xs>
           <Paper className={classes.paper}>
-            <TotalEmp title="PRESENT EMPLOYEES" emp = {total?present.length:""}/>
+            <TotalEmp title="PRESENT EMPLOYEES" emp = {total?total.length:""}/>
           </Paper>
         </Grid>
         <Grid item xs>
         <Paper className={classes.paper}>
-            <TotalEmp title="ABSENT EMPLOYEES" emp = {total?total.length-present.length:""}/>
+            <TotalEmp title="ABSENT EMPLOYEES" emp = {total?present.length-total.length:""}/>
           </Paper>
 
         </Grid>
