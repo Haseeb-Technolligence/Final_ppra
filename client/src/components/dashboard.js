@@ -7,6 +7,8 @@ import Graph from './graph';
 import AlignItemsList from './activitylist';
 import { attendance } from "../actions/employee-actions";
 import { connect } from "react-redux";
+import {  useSelector } from "react-redux";
+import { fetchLeave } from "../actions/user-leave-actions";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -22,8 +24,19 @@ const useStyles = makeStyles((theme) => ({
 const AutoGrid= (props)=> {
   useEffect(() => {
     props.attendance();
+    props.fetchLeave();
   }, []);
   const classes = useStyles();
+  const loggedInUser = useSelector((state) => state.authReducer.loggedInUser);
+  const leaves = useSelector((state) => state.leaveReducer.leaveList);
+  const totalLeaves = leaves.filter((leave)=>{
+    console.log('leaveeeee',leave.status)
+      if(leave.status)
+    if ((leave.employeeId === loggedInUser._id) && (leave.status.includes('Approved'))) {
+    return leave;
+    }
+  })
+  const designation = loggedInUser.designation;
   var today = new Date();
 var dd = today.getDate();
 
@@ -199,6 +212,69 @@ var absentforg = [(gtotal0.length-gpresent0.length),(gtotal1.length-gpresent1.le
 var totalforg = [gtotal0.length,gtotal1.length,gtotal2.length,gtotal3.length,gtotal4.length,gtotal5.length,gtotal6.length];
 
 }
+let dashboardJSX = '';
+if(designation === 'HR'){
+dashboardJSX = (
+  <>
+<Grid container spacing={3}>
+<Grid item xs>
+  <Paper className={classes.paper}>
+    <TotalEmp title="TOTAL EMPLOYEES" emp= {total?present.length:""}/>
+  </Paper>
+</Grid>
+<Grid item xs>
+  <Paper className={classes.paper}>
+    <TotalEmp title="PRESENT EMPLOYEES" emp = {total?total.length:""}/>
+  </Paper>
+</Grid>
+<Grid item xs>
+<Paper className={classes.paper}>
+    <TotalEmp title="ABSENT EMPLOYEES" emp = {total?present.length-total.length:""}/>
+  </Paper>
+
+</Grid>
+</Grid>
+<Grid container spacing={3}>
+<Grid item xs>
+  <Paper className={classes.paper}>
+    <TotalEmp title="TOTAL LEAVES" emp= {20} leave='yes'/>
+  </Paper>
+</Grid>
+<Grid item xs>
+  <Paper className={classes.paper}>
+    <TotalEmp title="DONE LEAVES" emp = {totalLeaves?totalLeaves.length:""} leave='yes'/>
+  </Paper>
+</Grid>
+<Grid item xs>
+<Paper className={classes.paper}>
+    <TotalEmp title="REMAINING LEAVES" emp = {totalLeaves?20-totalLeaves.length:""} leave='yes'/>
+  </Paper>
+
+</Grid>
+</Grid>
+</>
+)
+}else{
+dashboardJSX = (<Grid container spacing={3}>
+<Grid item xs>
+  <Paper className={classes.paper}>
+    <TotalEmp title="TOTAL LEAVES" emp= {20} leave='yes'/>
+  </Paper>
+</Grid>
+<Grid item xs>
+  <Paper className={classes.paper}>
+    <TotalEmp title="DONE LEAVES" emp = {totalLeaves?totalLeaves.length:""} leave='yes'/>
+  </Paper>
+</Grid>
+<Grid item xs>
+<Paper className={classes.paper}>
+    <TotalEmp title="REMAINING LEAVES" emp = {totalLeaves?20-totalLeaves.length:""} leave='yes'/>
+  </Paper>
+
+</Grid>
+</Grid>
+)
+}
   return (
     <div className={classes.root}>
       <Grid container spacing={12}>
@@ -210,24 +286,7 @@ var totalforg = [gtotal0.length,gtotal1.length,gtotal2.length,gtotal3.length,gto
           <br />
         </Grid>
       </Grid>
-      <Grid container spacing={3}>
-        <Grid item xs>
-          <Paper className={classes.paper}>
-            <TotalEmp title="TOTAL EMPLOYEES" emp= {total?present.length:""}/>
-          </Paper>
-        </Grid>
-        <Grid item xs>
-          <Paper className={classes.paper}>
-            <TotalEmp title="PRESENT EMPLOYEES" emp = {total?total.length:""}/>
-          </Paper>
-        </Grid>
-        <Grid item xs>
-        <Paper className={classes.paper}>
-            <TotalEmp title="ABSENT EMPLOYEES" emp = {total?present.length-total.length:""}/>
-          </Paper>
-
-        </Grid>
-      </Grid>
+      {dashboardJSX}
       <br/>
       <Grid container spacing={12}>
         <br/>
@@ -257,6 +316,7 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
   return {
       attendance: () => dispatch(attendance()),
+      fetchLeave: () => dispatch(fetchLeave()),
   };
 };
 export default connect(mapStateToProps,mapDispatchToProps) (AutoGrid);

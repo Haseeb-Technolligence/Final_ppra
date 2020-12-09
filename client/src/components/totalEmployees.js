@@ -10,6 +10,7 @@ import {
   makeStyles,
   colors
 } from '@material-ui/core';
+import AirlineSeatFlatIcon from "@material-ui/icons/AirlineSeatFlat";
 import AttachMoneyIcon from '@material-ui/icons/AttachMoney';
 import GroupAddOutlinedIcon from '@material-ui/icons/GroupAddOutlined';
 import {connect} from 'react-redux';
@@ -55,9 +56,12 @@ const TotalEmp = (props,{ className, ...rest}) => {
             </Typography>
           </Grid>
           <Grid item>
-            <Avatar className={classes.avatar}>
+            {props.leave?<Avatar className={classes.avatar}>
+              <AirlineSeatFlatIcon />
+            </Avatar>:<Avatar className={classes.avatar}>
               <GroupAddOutlinedIcon />
-            </Avatar>
+            </Avatar>}
+            
           </Grid>
         </Grid>
       </CardContent>

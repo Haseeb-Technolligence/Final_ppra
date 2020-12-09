@@ -21,7 +21,10 @@ const MaterialTableComponent = (props) => {
       title={props.title}
       columns={props.columns}
       data={props.data}
-      options={{ exportButton: true }}
+      options={{
+        exportButton: true,
+        exportAllData: true,
+      }}
       editable={deleteRow}
     />
   );
