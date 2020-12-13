@@ -5,9 +5,6 @@ const jwt = require("jsonwebtoken");
 const fs = require('fs')
 require("dotenv").config();
 var xlsx = require('node-xlsx');
-const xlsxFile = require('read-excel-file/node');
-const ExcelJS = require('exceljs');
-
 const getLogUser = async (req, res) => {
   try {
     const user = await Employee.findById(req.user.userid).select("-password");
