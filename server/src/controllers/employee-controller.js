@@ -158,22 +158,8 @@ const getAttendance = async (req,res)=>{
   try{
     const homeDir = require('os').homedir();
 const desktopDir = `${homeDir}/Desktop`;
-  var obj = await xlsx.parse(`${desktopDir}/99-Revised.xls`); // parses a file 
-//   var workbook = new ExcelJS.Workbook(); 
-// workbook.xlsx.readFile(`${desktopDir}/99-Revised.xls`)
-//     .then(function() {
-//       console.log(workbook._xlsx._xlsx)
-//         // var worksheet = workbook.getWorksheet(1);
-//         // worksheet.eachRow({ includeEmpty: true }, function(row, rowNumber) {
-//         //   console.log("Row " + rowNumber + " = " + JSON.stringify(row.values));
-//         // });
-//     });
-  // data is an array of arrays
-  // console.log(obj[0].data[1][28])
-  // console.log(obj[0].data[2][28])
-  // console.log(obj[0].data[3][28])
-  // console.log(obj[0].data[2][19])
-  // console.log(obj[0].data[2][30])
+  var obj = await xlsx.parse(`${desktopDir}/BiometricAttendanceReport.xls`); // parses a file 
+  console.log(obj[0].data[0])
   var nameArray=[];
   var offArray=[];
   var onArray=[];
@@ -183,17 +169,17 @@ const desktopDir = `${homeDir}/Desktop`;
   var empIDArray=[];
   var dutyOnArray=[];
   var dutyOffArray=[];
-  // for(let i=2;i<obj[0].data.length;i++){
-  //   nameArray.push(obj[0].data[i][8])
-  //   dateArray.push(obj[0].data[i][18])
-  //   onArray.push(obj[0].data[i][28])
-  //   offArray.push(obj[0].data[i][30])
-  //   deptArray.push(obj[0].data[i][21])
-  //   empIDArray.push(obj[0].data[i][1]);
+  for(let i=1;i<obj[0].data.length;i++){
+    nameArray.push(obj[0].data[i][3])
+    dateArray.push(obj[0].data[i][5])
+    onArray.push(obj[0].data[i][7])
+    offArray.push(obj[0].data[i][8])
+    deptArray.push(obj[0].data[i][21])
+    empIDArray.push(obj[0].data[i][1]);
   //   workArray.push(obj[0].data[i][46]);
   //   dutyOffArray.push(obj[0].data[i][26]);
   //   dutyOnArray.push(obj[0].data[i][23]);
-  // }
+  }
   res.send({nameArray,dateArray,onArray,offArray,deptArray,empIDArray,dutyOffArray,dutyOnArray,workArray})
   }catch(e){
     console.log('eee',e)
