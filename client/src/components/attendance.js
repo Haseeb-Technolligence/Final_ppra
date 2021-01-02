@@ -16,7 +16,9 @@ const Attendance = (props) => {
           date: date,
           dept: props.data.deptArray[index],
           onduty:  props.data.onArray[index],
-          offduty: props.data.offArray[index]
+          offduty: props.data.offArray[index],
+          checkIn: props.data.checkIn?props.data.checkIn[index]:'',
+          checkOut: props.data.checkOut?props.data.checkOut[index]:''
         };
       });
     }
@@ -28,6 +30,8 @@ const Attendance = (props) => {
         { title: "Date", field: "date" },
         { title: "On duty", field: "onduty" },
         { title: "Off duty", field: "offduty" },
+        { title: "Check In", field: "checkIn" },
+        { title: "Check Out", field: "checkOut" },
       ];
   return (
     <MaterialTable

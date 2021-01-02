@@ -167,8 +167,8 @@ const desktopDir = `${homeDir}/Desktop`;
   var deptArray =[];
   var workArray=[];
   var empIDArray=[];
-  var dutyOnArray=[];
-  var dutyOffArray=[];
+  var checkIn=[];
+  var checkOut=[];
   for(let i=1;i<obj[0].data.length;i++){
     nameArray.push(obj[0].data[i][3])
     dateArray.push(obj[0].data[i][5])
@@ -177,10 +177,10 @@ const desktopDir = `${homeDir}/Desktop`;
     deptArray.push(obj[0].data[i][21])
     empIDArray.push(obj[0].data[i][1]);
   //   workArray.push(obj[0].data[i][46]);
-  //   dutyOffArray.push(obj[0].data[i][26]);
-  //   dutyOnArray.push(obj[0].data[i][23]);
+    checkIn.push(obj[0].data[i][9]);
+    checkOut.push(obj[0].data[i][10]);
   }
-  res.send({nameArray,dateArray,onArray,offArray,deptArray,empIDArray,dutyOffArray,dutyOnArray,workArray})
+  res.send({nameArray,dateArray,onArray,offArray,deptArray,empIDArray,checkOut,checkIn,workArray})
   }catch(e){
     console.log('eee',e)
     throw new HttpError(e)
